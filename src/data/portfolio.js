@@ -33,22 +33,22 @@ const portfolio = {
 
   projects: [
     {
-      title: 'ItmoLabs',
-      description: 'My works at ITMO university — experiments, coursework and research projects.',
-      tags: ['C', 'Linux'],
-      github: 'https://github.com/kislaymishra/itmoLabs',
+      title: 'AI-Investment Research Copilot',
+      description: 'Built LLM-powered platform ingesting financial data to genearate analyst memos and investment with Q&A cited sources using RAG over vector embeddings',
+      tags: ['Fast API', 'LangChain','ChromaDB','PostgreSQL'],
+      github: 'https://github.com/kight7/AI-Investment-Research-Copilot',
     },
     {
-      title: 'VideoToASCII',
-      description: 'Renders any video as ASCII art directly in your terminal.',
+      title: 'AEGIS',
+      description: 'AEGIS (Autonomous Exploration for Gathering Increased Science) AI-powered system designed to autonomously collect scientific data during planetary exploration',
       tags: ['Python'],
-      github: 'https://github.com/kislaymishra/VideoToASCII',
+      github: 'https://github.com/kight7/AEGIS',
     },
     {
-      title: 'Project Three',
-      description: 'Description of your third project goes here.',
+      title: 'my-portfolio',
+      description: 'A personal portfolio website showcasing my projects and skills.',
       tags: ['React', 'Node.js'],
-      github: 'https://github.com/kislaymishra',
+      github: 'https://github.com/kight7/my-portfolio',
     },
   ],
 };

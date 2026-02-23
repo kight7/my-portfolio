@@ -1,35 +1,16 @@
 @import "tailwindcss";
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 
 body {
-  background-color: #080810;
+  background-color: #05050f;
+  background-image: radial-gradient(ellipse at 50% 0%, rgba(37,99,235,0.15) 0%, transparent 60%);
   color: #ffffff;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', monospace;
   min-height: 100vh;
 }
 
-/* Blue glow effect for buttons */
-.blue-glow:hover {
-  box-shadow: 0 0 20px rgba(37, 99, 235, 0.6);
-}
-
-/* Scrollbar styling */
-::-webkit-scrollbar {
-  width: 4px;
-}
-::-webkit-scrollbar-track {
-  background: #080810;
-}
-::-webkit-scrollbar-thumb {
-  background: #2563EB;
-  border-radius: 2px;
-}
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: #05050f; }
+::-webkit-scrollbar-thumb { background: #2563EB; border-radius: 2px; }
