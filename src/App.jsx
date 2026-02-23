@@ -14,7 +14,7 @@ function App() {
       <div id="skills">
         <Skills />
       </div>
-      <div id="projects">
+      <div id="projects" style={{ marginTop: '200px' }}>
         <Projects />
       </div>
       <div id="contact">
