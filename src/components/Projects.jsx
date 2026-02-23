@@ -4,7 +4,7 @@ import portfolio from '../data/portfolio.js'
 
 export default function Projects() {
   return (
-    <div className="px-6 py-24 flex flex-col items-center">
+    <div className="px-8 py-24 flex flex-col items-center">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -12,7 +12,7 @@ export default function Projects() {
         transition={{ duration: 0.5 }}
         className="mb-16 text-center"
       >
-        <h2 className="text-xl font-bold text-white mb-2 font-mono tracking-widest uppercase">// Projects</h2>
+        <h2 className="text-xl font-bold mb-2 font-mono tracking-widest uppercase" style={{ color: '#C9A84C' }}>Projects</h2>
         <div className="w-16 h-px mx-auto" style={{ background: 'linear-gradient(90deg, transparent, #2563EB, transparent)' }}></div>
       </motion.div>
 
