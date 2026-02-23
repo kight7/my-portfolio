@@ -11,7 +11,7 @@ export default function Header() {
       <div className="pointer-events-auto" style={{ marginTop: '20px' }}>
         <NavBar />
       </div>
-      <div style={{ width: 320, height: 320, flexShrink: 0 }} className="pointer-events-none">
+      <div style={{ width: 320, height: 320, flexShrink: 0, marginTop: '60px'}} className="pointer-events-none">
         <Globe />
       </div>
     </div>
