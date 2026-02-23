@@ -50,6 +50,12 @@ const portfolio = {
       tags: ['React', 'Node.js'],
       github: 'https://github.com/kight7/my-portfolio',
     },
+    {
+      title: 'VAPT-X',
+      description: 'A vulnerability automated penetration testing tool using Local LLMs',
+      tags: ['Ollama','LangChain','ChromaDB','Nmap'],
+      github: 'https://github.com/kight7/VAPT-X'
+    }
   ],
 };
 
