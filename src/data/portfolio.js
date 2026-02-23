@@ -10,25 +10,25 @@ const portfolio = {
 
   links: [
     {
-      label: 'GitHub',
       url: 'https://github.com/kight7',
       icon: 'github',
     },
     {
-      label: 'Email',
       url: 'mailto:kislaymishra07@gmail.com',
       icon: 'mail',
     },
     {
-      label: 'Telegram',
       url: 'https://t.me/yourusername',
       icon: 'send',
     },
     {
-      label: 'X',
       url: 'https://x.com/yourusername',
       icon: 'x',
     },
+    {
+      url: 'https://leetcode.com/u/Ashura_/',
+      icon: 'leetcode',
+    }
   ],
 
   projects: [
