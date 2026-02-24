@@ -34,12 +34,14 @@ const portfolio = {
   projects: [
     {
       title: 'AI-Investment Research Copilot',
+      image: '/assets/ai_investment.png',
       description: 'Built LLM-powered platform ingesting financial data to genearate analyst memos and investment with Q&A cited sources using RAG over vector embeddings',
       tags: ['Fast API', 'LangChain','ChromaDB','PostgreSQL'],
       github: 'https://github.com/kight7/AI-Investment-Research-Copilot',
     },
     {
       title: 'AEGIS',
+      image: '/assets/aegis_rover.png',
       description: 'AEGIS (Autonomous Exploration for Gathering Increased Science) AI-powered system designed to autonomously collect scientific data during planetary exploration',
       tags: ['Python'],
       github: 'https://github.com/kight7/AEGIS',
@@ -52,6 +54,7 @@ const portfolio = {
     },
     {
       title: 'VAPT-X',
+      image: '/assets/vaptx.png',
       description: 'A vulnerability automated penetration testing tool using Local LLMs',
       tags: ['Ollama','LangChain','ChromaDB','Nmap'],
       github: 'https://github.com/kight7/VAPT-X'
