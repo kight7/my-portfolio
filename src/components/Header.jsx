@@ -13,7 +13,7 @@ export default function Header() {
       </div>
 
       {/* NavBar - fixed top center */}
-      <div style={{ position: 'fixed', top: '20px', left: '50%', transform: 'translateX(-50%)', zIndex: 50, pointerEvents: 'auto' }}>
+      <div style={{ position: 'fixed', top: '20px', left: '55%', transform: 'translateX(-50%)', zIndex: 50, pointerEvents: 'auto' }}>
         <NavBar />
       </div>
 
