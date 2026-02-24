@@ -16,7 +16,7 @@ function App() {
       <div style={{ position: 'fixed', top: 0, left: 0, zIndex: 999 }}>
         <Clock />
       </div>
-      <div style={{ position: 'fixed', top: '20px', left: '55%', transform: 'translateX(-50%)', zIndex: 999 }}>
+      <div style={{ position: 'fixed', top: '20px', left: '50%', transform: 'translateX(-50%)', zIndex: 999 }}>
         <NavBar />
       </div>
       <div style={{ position: 'fixed', top: 0, right: 0, width: 320, height: 320, zIndex: 999, pointerEvents: 'none' }}>
