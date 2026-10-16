@@ -18,7 +18,7 @@ export default function CompactRotatingGlobe() {
         "count": 10,
         "mapShade": true,
         "keepContrast": true,
-        "baseColor": "#00ffaa",
+        "baseColor": "#1B75FF",
         "baseColor2": "#ff0000"
       }),
       am5themes_Responsive.new(root)
