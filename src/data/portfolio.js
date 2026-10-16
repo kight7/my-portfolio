@@ -36,7 +36,7 @@ const portfolio = {
       title: 'AI-Investment Research Copilot',
       image: '/assets/ai_investment.png',
       description: 'Built LLM-powered platform ingesting financial data to genearate analyst memos and investment with Q&A cited sources using RAG over vector embeddings',
-      tags: ['Fast API', 'LangChain','ChromaDB','PostgreSQL'],
+      tags: ['Fast API', 'LangChain', 'ChromaDB', 'PostgreSQL'],
       github: 'https://github.com/kight7/AI-Investment-Research-Copilot',
     },
     {
@@ -48,6 +48,7 @@ const portfolio = {
     },
     {
       title: 'my-portfolio',
+      image: '/assets/Portfolio.png',
       description: 'A personal portfolio website showcasing my projects and skills.',
       tags: ['React', 'Node.js'],
       github: 'https://github.com/kight7/my-portfolio',
@@ -56,7 +57,7 @@ const portfolio = {
       title: 'VAPT-X',
       image: '/assets/vaptx.png',
       description: 'A vulnerability automated penetration testing tool using Local LLMs',
-      tags: ['Ollama','LangChain','ChromaDB','Nmap'],
+      tags: ['Ollama', 'LangChain', 'ChromaDB', 'Nmap'],
       github: 'https://github.com/kight7/VAPT-X'
     }
   ],
