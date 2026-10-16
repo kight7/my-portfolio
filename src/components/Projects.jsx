@@ -3,7 +3,7 @@ import portfolio from '../data/portfolio.js'
 
 export default function Projects() {
   return (
-    <div className="px-6 py-16 flex flex-col items-center">
+    <div className="px-6 py-16 pb-40 flex flex-col items-center">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -16,7 +16,7 @@ export default function Projects() {
       </motion.div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl">
-        {portfolio.projects.map(function(project, i) {
+        {portfolio.projects.map(function (project, i) {
           return (
             <motion.a
               key={project.title}
@@ -30,11 +30,11 @@ export default function Projects() {
               whileHover={{ y: -6 }}
               className="flex flex-col rounded-2xl overflow-hidden transition-all duration-300 group cursor-pointer"
               style={{ border: '1px solid rgba(37,99,235,0.2)', background: 'rgba(5,5,20,0.6)', textDecoration: 'none' }}
-              onMouseEnter={function(e) {
+              onMouseEnter={function (e) {
                 e.currentTarget.style.border = '1px solid rgba(37,99,235,0.7)'
                 e.currentTarget.style.boxShadow = '0 0 40px rgba(37,99,235,0.15)'
               }}
-              onMouseLeave={function(e) {
+              onMouseLeave={function (e) {
                 e.currentTarget.style.border = '1px solid rgba(37,99,235,0.2)'
                 e.currentTarget.style.boxShadow = 'none'
               }}
@@ -55,8 +55,8 @@ export default function Projects() {
                   <>
                     <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle at 50% 50%, rgba(37,99,235,0.4) 0%, transparent 70%)' }}></div>
                     <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(37,99,235,0.4)" strokeWidth="1">
-                      <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
-                      <polyline points="21 15 16 10 5 21"/>
+                      <rect x="3" y="3" width="18" height="18" rx="2" /><circle cx="8.5" cy="8.5" r="1.5" />
+                      <polyline points="21 15 16 10 5 21" />
                     </svg>
                   </>
                 )}
@@ -74,7 +74,7 @@ export default function Projects() {
                   {project.description}
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  {project.tags.map(function(tag) {
+                  {project.tags.map(function (tag) {
                     return (
                       <span key={tag} className="text-xs px-2.5 py-1 rounded-full font-mono"
                         style={{ border: '1px solid rgba(37,99,235,0.35)', color: '#60a5fa', background: 'rgba(37,99,235,0.08)' }}>
