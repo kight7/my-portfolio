@@ -59,6 +59,20 @@ const portfolio = {
       description: 'A vulnerability automated penetration testing tool using Local LLMs',
       tags: ['Ollama', 'LangChain', 'ChromaDB', 'Nmap'],
       github: 'https://github.com/kight7/VAPT-X'
+    },
+    {
+      title: 'Masal-AI',
+      image: '/assets/Masal-Image.png',
+      description:'A full-stack AI Web appthat scores inbound leads 0–100 into Hot/Warm/Cold tiers and generates a summary, next action, reply draft, call-prep brief and a grounded coach chat per lead.',
+      tags: ['PostgreSQL','Fast API', 'React', 'Groq, Gemini'],
+      github: 'https://github.com/kight7/Masal-AI',
+    },
+    {
+      title: 'Joblenda',
+      image: '/assets/Joblenda.png',
+      description: 'Joblenda is a platform that helps job seekers find job, tailor resume and apply.',
+      tags: ['React', 'Node.js'],
+      github: 'https://github.com/kight7/Joblenda',
     }
   ],
 };

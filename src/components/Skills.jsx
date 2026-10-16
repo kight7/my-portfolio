@@ -5,7 +5,7 @@ const skills = [
   { name: 'Java', color: '#F97316', bg: 'rgba(249,115,22,0.1)', emoji: '☕' },
   { name: 'FastAPI', color: '#22C55E', bg: 'rgba(34,197,94,0.1)', emoji: '⚡' },
   { name: 'React', color: '#38BDF8', bg: 'rgba(56,189,248,0.1)', emoji: '⚛️' },
-  { name: 'Node.js', color: '#86EFAC', bg: 'rgba(134,239,172,0.1)', emoji: '🟢' },
+  { name: 'Fast API', color: '#86EFAC', bg: 'rgba(134,239,172,0.1)', emoji: '🟢' },
   { name: 'SQL', color: '#A78BFA', bg: 'rgba(167,139,250,0.1)', emoji: '🗄️' },
   { name: 'PostgreSQL', color: '#60A5FA', bg: 'rgba(96,165,250,0.1)', emoji: '🐘' },
   { name: 'ChromaDB', color: '#F472B6', bg: 'rgba(244,114,182,0.1)', emoji: '🔮' },
