@@ -1,126 +1,234 @@
-import { useEffect, useRef } from 'react'
-import * as THREE from 'three'
+import React, { useEffect } from 'react';
+import * as am5 from '@amcharts/amcharts5';
+import * as am5map from '@amcharts/amcharts5/map';
+import * as am5plugins_json from '@amcharts/amcharts5/plugins/json';
+import am5themes_Animated from '@amcharts/amcharts5/themes/Animated';
+import am5themes_Adaptive from '@amcharts/amcharts5/themes/Adaptive';
+import am5themes_Responsive from '@amcharts/amcharts5/themes/Responsive';
+import am5geodata_worldLow from '@amcharts/amcharts5-geodata/worldLow';
 
-const CONTINENTS = [
-  [[70,-140],[70,-60],[50,-55],[25,-80],[15,-85],[8,-77],[20,-87],[22,-90],[30,-110],[32,-117],[48,-124],[60,-140],[70,-140]],
-  [[12,-72],[12,-62],[5,-52],[-5,-35],[-20,-40],[-35,-57],[-55,-68],[-55,-64],[-40,-62],[-5,-80],[0,-80],[8,-77],[12,-72]],
-  [[71,28],[60,30],[55,25],[45,30],[36,28],[36,5],[43,-5],[48,-5],[52,2],[58,5],[65,14],[71,28]],
-  [[37,10],[37,35],[15,42],[0,42],[-10,38],[-35,20],[-35,18],[-10,12],[0,8],[15,0],[30,-5],[37,10]],
-  [[70,30],[70,180],[50,140],[35,135],[22,120],[10,105],[0,105],[10,78],[22,70],[30,60],[45,60],[60,55],[65,40],[71,28],[70,30]],
-  [[-15,130],[-15,138],[-20,148],[-38,146],[-38,140],[-32,125],[-22,114],[-18,122],[-15,130]],
-]
+export default function RotatingGlobe() {
+  useEffect(() => {
+    // Create root element
+    let root = am5.Root.new("chartdiv");
 
-function latLngToVec3(lat, lng, r) {
-  const phi = (90 - lat) * (Math.PI / 180)
-  const theta = (lng + 180) * (Math.PI / 180)
-  return new THREE.Vector3(
-    -r * Math.sin(phi) * Math.cos(theta),
-    r * Math.cos(phi),
-    r * Math.sin(phi) * Math.sin(theta)
-  )
-}
+    root.setThemes([
+      am5themes_Animated.new(root),
+      am5themes_Adaptive(root, {
+        "count": 10,
+        "mapShade": true,
+        "keepContrast": true,
+        "baseColor": "#00ffaa",
+        "baseColor2": "#ff0000"
+      }),
+      am5themes_Responsive.new(root)
+    ]);
 
-export default function Globe() {
-  const mountRef = useRef(null)
-
-  useEffect(function() {
-    const container = mountRef.current
-    const w = 320
-    const h = 320
-
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
-    renderer.setSize(w, h)
-    renderer.setClearColor(0x000000, 0)
-
-    // Force canvas to be absolutely positioned so it never affects layout
-    renderer.domElement.style.position = 'absolute'
-    renderer.domElement.style.top = '0'
-    renderer.domElement.style.left = '0'
-    renderer.domElement.style.width = '320px'
-    renderer.domElement.style.height = '320px'
-    container.appendChild(renderer.domElement)
-
-    const scene = new THREE.Scene()
-    const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 1000)
-    camera.position.z = 2.5
-
-    const globeGroup = new THREE.Group()
-    scene.add(globeGroup)
-
-    const R = 1
-    const gridMat = new THREE.LineBasicMaterial({ color: 0x2563eb, transparent: true, opacity: 0.5 })
-    const dimMat = new THREE.LineBasicMaterial({ color: 0x1e3a8a, transparent: true, opacity: 0.25 })
-
-    for (let lat = -80; lat <= 80; lat += 20) {
-      const phi = (90 - lat) * (Math.PI / 180)
-      const pts = []
-      for (let i = 0; i <= 128; i++) {
-        const theta = (i / 128) * Math.PI * 2
-        pts.push(new THREE.Vector3(Math.sin(phi) * Math.cos(theta), Math.cos(phi), Math.sin(phi) * Math.sin(theta)))
-      }
-      globeGroup.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), lat === 0 ? gridMat : dimMat))
-    }
-
-    for (let lon = 0; lon < 360; lon += 20) {
-      const theta = lon * (Math.PI / 180)
-      const pts = []
-      for (let i = 0; i <= 64; i++) {
-        const phi = (i / 64) * Math.PI
-        pts.push(new THREE.Vector3(Math.sin(phi) * Math.cos(theta), Math.cos(phi), Math.sin(phi) * Math.sin(theta)))
-      }
-      globeGroup.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), lon === 0 || lon === 180 ? gridMat : dimMat))
-    }
-
-    const contMat = new THREE.LineBasicMaterial({ color: 0x22c55e, transparent: true, opacity: 0.9 })
-    const dotMat = new THREE.MeshBasicMaterial({ color: 0x16a34a, transparent: true, opacity: 0.4 })
-
-    CONTINENTS.forEach(function(coords) {
-      const pts = coords.map(function(c) { return latLngToVec3(c[0], c[1], R + 0.01) })
-      pts.push(pts[0])
-      globeGroup.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), contMat))
-      const lats = coords.map(function(c) { return c[0] })
-      const lngs = coords.map(function(c) { return c[1] })
-      const minLat = Math.min.apply(null, lats), maxLat = Math.max.apply(null, lats)
-      const minLng = Math.min.apply(null, lngs), maxLng = Math.max.apply(null, lngs)
-      for (let la = minLat; la <= maxLat; la += 4) {
-        for (let ln = minLng; ln <= maxLng; ln += 4) {
-          const pos = latLngToVec3(la, ln, R + 0.005)
-          const dot = new THREE.Mesh(new THREE.SphereGeometry(0.018, 4, 4), dotMat)
-          dot.position.copy(pos)
-          globeGroup.add(dot)
+    const config = {
+      "type": "MapChart",
+      "settings": {
+        "autoHome": true,
+        "panX": "rotateX",
+        "panY": "rotateY",
+        "boxZoom": "shift",
+        "minZoomLevel": 0.5,
+        "zoomLevel": 0.95,
+        "homeZoomLevel": 0.95,
+        "animationDuration": 800,
+        "background": {
+          "type": "RoundedRectangle",
+          "settings": {
+            "fill": {
+              "type": "Color",
+              "value": "#101318"
+            },
+            "fillOpacity": 0
+          }
+        },
+        "zoomControl": {
+          "type": "ZoomControl",
+          "properties": {
+            "homeButton": {
+              "settings": {
+                "visible": true
+              }
+            }
+          }
+        },
+        "animations": [
+          {
+            "key": "rotationX",
+            "from": 0,
+            "to": 360,
+            "duration": 30000,
+            "loops": 0
+          }
+        ],
+        "projectionName": "geoOrthographic",
+        "width": {
+          "type": "Percent",
+          "value": 100
+        },
+        "height": {
+          "type": "Percent",
+          "value": 100
         }
-      }
-    })
+      },
+      "properties": {
+        "series": [
+          "#series-0",
+          "#series-1",
+          "#series-2",
+          "#series-3"
+        ]
+      },
+      "children": [
+        {
+          "type": "Label",
+          "settings": {
+            "text": "Imagery: NASA Earth Observatory",
+            "fontSize": 12,
+            "fill": {
+              "type": "Color",
+              "value": "#ffffff"
+            },
+            "fillOpacity": 0.6,
+            "x": {
+              "type": "Percent",
+              "value": 100
+            },
+            "centerX": {
+              "type": "Percent",
+              "value": 100
+            },
+            "dx": -10,
+            "y": 10,
+            "visible": false
+          },
+          "index": 2
+        }
+      ],
+      "refs": [
+        {
+          "data-0": [
+            {
+              "geometry": {
+                "type": "GeoRectangle",
+                "north": 90,
+                "east": 180,
+                "south": -90,
+                "west": -180
+              },
+              "__parse": true
+            }
+          ]
+        },
+        {
+          "data-1": []
+        },
+        {
+          "data-2": []
+        },
+        {
+          "series-0": {
+            "type": "MapPolygonSeries",
+            "properties": {
+              "data": "#data-0",
+              "mapPolygons": {
+                "properties": {
+                  "template": {
+                    "settings": {
+                      "fill": "@root.interfaceColors.get('alternativeBackground')",
+                      "fillOpacity": 0.05,
+                      "strokeOpacity": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "series-1": {
+            "type": "MapRasterSeries",
+            "settings": {
+              "visible": false,
+              "affectsBounds": false
+            }
+          }
+        },
+        {
+          "series-2": {
+            "type": "GraticuleSeries",
+            "properties": {
+              "mapLines": {
+                "properties": {
+                  "template": {
+                    "settings": {
+                      "strokeOpacity": 0.08,
+                      "stroke": "@root.interfaceColors.get('alternativeBackground')"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "series-3": {
+            "type": "MapPolygonSeries",
+            "settings": {
+              "geoJSON": am5geodata_worldLow
+            },
+            "properties": {
+              "mapPolygons": {
+                "properties": {
+                  "template": {
+                    "settings": {
+                      "tooltipText": "{name}",
+                      "interactive": true,
+                      "strokeWidth": 0.5
+                    },
+                    "states": [
+                      {
+                        "key": "hover",
+                        "settings": {
+                          "fill": "@root.interfaceColors.get('primaryButtonHover')",
+                          "fillOpacity": 1
+                        }
+                      },
+                      {
+                        "key": "active",
+                        "settings": {
+                          "fill": "@root.interfaceColors.get('primaryButtonActive')",
+                          "fillOpacity": 1
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    };
 
-    let animId
-    const animate = function() {
-      animId = requestAnimationFrame(animate)
-      globeGroup.rotation.y += 0.003
-      globeGroup.rotation.x = 0.25
-      renderer.render(scene, camera)
-    }
-    animate()
+    am5plugins_json.JsonParser.new(root)
+      .parse(config, { parent: root.container })
+      .catch(function (e) {
+        console.error("amCharts: the chart config failed to parse — nothing was rendered.", e);
+      });
 
-    return function() {
-      cancelAnimationFrame(animId)
-      if (container.contains(renderer.domElement)) container.removeChild(renderer.domElement)
-      renderer.dispose()
-    }
-  }, [])
+    // Cleanup root element on component unmount
+    return () => {
+      root.dispose();
+    };
+  }, []);
 
   return (
-    <div
-      ref={mountRef}
-      style={{
-        position: 'fixed',
-        top: 0,
-        right: 0,
-        width: '320px',
-        height: '320px',
-        zIndex: 999,
-        pointerEvents: 'none',
-        overflow: 'hidden',
-      }}
-    />
-  )
+    <div style={{ width: '100%', height: '100vh', background: '#ffffff' }}>
+      <div id="chartdiv" style={{ width: '100%', height: '100%' }}></div>
+    </div>
+  );
 }
