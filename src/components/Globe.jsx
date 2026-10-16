@@ -18,8 +18,8 @@ export default function CompactRotatingGlobe() {
         "count": 10,
         "mapShade": true,
         "keepContrast": true,
-        "baseColor": "#1b36ffff",
-        "baseColor2": "#ff0000"
+        "baseColor": "#1B75FF",
+        "baseColor2": "#0040ffff"
       }),
       am5themes_Responsive.new(root)
     ]);
