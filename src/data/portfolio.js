@@ -33,11 +33,11 @@ const portfolio = {
 
   projects: [
     {
-      title: 'AI-Investment Research Copilot',
-      image: '/assets/ai_investment.png',
-      description: 'Built LLM-powered platform ingesting financial data to genearate analyst memos and investment with Q&A cited sources using RAG over vector embeddings',
-      tags: ['Fast API', 'LangChain', 'ChromaDB', 'PostgreSQL'],
-      github: 'https://github.com/kight7/AI-Investment-Research-Copilot',
+      title: 'Masal-AI',
+      image: '/assets/Masal-Image.png',
+      description: 'A full-stack AI Web appthat scores inbound leads 0–100 into Hot/Warm/Cold tiers and generates a summary, next action, reply draft, call-prep brief and a grounded coach chat per lead.',
+      tags: ['PostgreSQL', 'Fast API', 'React', 'Groq, Gemini'],
+      github: 'https://masal-ai-u2f9.vercel.app/',
     },
     {
       title: 'AEGIS',
@@ -61,19 +61,19 @@ const portfolio = {
       github: 'https://github.com/kight7/VAPT-X'
     },
     {
-      title: 'Masal-AI',
-      image: '/assets/Masal-Image.png',
-      description: 'A full-stack AI Web appthat scores inbound leads 0–100 into Hot/Warm/Cold tiers and generates a summary, next action, reply draft, call-prep brief and a grounded coach chat per lead.',
-      tags: ['PostgreSQL', 'Fast API', 'React', 'Groq, Gemini'],
-      github: 'https://masal-ai-u2f9.vercel.app/',
-    },
-    {
       title: 'Job-lenda',
       image: '/assets/Joblenda.png',
       description: 'Joblenda is a platform that helps job seekers find job, tailor resume and apply.',
       tags: ['React', 'Node.js'],
       github: 'https://job-scrapper-9dd8a.web.app/',
-    }
+    },
+    {
+      title: 'AI-Investment Research Copilot',
+      image: '/assets/ai_investment.png',
+      description: 'Built LLM-powered platform ingesting financial data to genearate analyst memos and investment with Q&A cited sources using RAG over vector embeddings',
+      tags: ['Fast API', 'LangChain', 'ChromaDB', 'PostgreSQL'],
+      github: 'https://github.com/kight7/AI-Investment-Research-Copilot',
+    },
   ],
 };
 
