@@ -3,7 +3,7 @@ import portfolio from '../data/portfolio.js'
 
 export default function Projects() {
   return (
-    <div className="px-6 py-16 pb-40 flex flex-col items-center">
+    <div className="px-6 pt-16 pb-40 flex flex-col items-center">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
