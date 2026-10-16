@@ -7,10 +7,10 @@ import am5themes_Adaptive from '@amcharts/amcharts5/themes/Adaptive';
 import am5themes_Responsive from '@amcharts/amcharts5/themes/Responsive';
 import am5geodata_worldLow from '@amcharts/amcharts5-geodata/worldLow';
 
-export default function RotatingGlobe() {
+export default function CompactRotatingGlobe() {
   useEffect(() => {
-    // Create root element
-    let root = am5.Root.new("chartdiv");
+    // Create root element targeting the specific widget div
+    let root = am5.Root.new("globe-widget-div");
 
     root.setThemes([
       am5themes_Animated.new(root),
@@ -30,7 +30,7 @@ export default function RotatingGlobe() {
         "autoHome": true,
         "panX": "rotateX",
         "panY": "rotateY",
-        "boxZoom": "shift",
+        "boxZoom": false, // Disabled for a clean widget widget experience
         "minZoomLevel": 0.5,
         "zoomLevel": 0.95,
         "homeZoomLevel": 0.95,
@@ -42,7 +42,7 @@ export default function RotatingGlobe() {
               "type": "Color",
               "value": "#101318"
             },
-            "fillOpacity": 0
+            "fillOpacity": 0 // Fully transparent background to match your space theme
           }
         },
         "zoomControl": {
@@ -50,7 +50,7 @@ export default function RotatingGlobe() {
           "properties": {
             "homeButton": {
               "settings": {
-                "visible": true
+                "visible": false // Hidden for a clean decorative footer widget
               }
             }
           }
@@ -82,32 +82,6 @@ export default function RotatingGlobe() {
           "#series-3"
         ]
       },
-      "children": [
-        {
-          "type": "Label",
-          "settings": {
-            "text": "Imagery: NASA Earth Observatory",
-            "fontSize": 12,
-            "fill": {
-              "type": "Color",
-              "value": "#ffffff"
-            },
-            "fillOpacity": 0.6,
-            "x": {
-              "type": "Percent",
-              "value": 100
-            },
-            "centerX": {
-              "type": "Percent",
-              "value": 100
-            },
-            "dx": -10,
-            "y": 10,
-            "visible": false
-          },
-          "index": 2
-        }
-      ],
       "refs": [
         {
           "data-0": [
@@ -165,8 +139,8 @@ export default function RotatingGlobe() {
                 "properties": {
                   "template": {
                     "settings": {
-                      "strokeOpacity": 0.08,
-                      "stroke": "@root.interfaceColors.get('alternativeBackground')"
+                      "strokeOpacity": 0.15,
+                      "stroke": "#00ffaa" // Matches your cyan/green tech aesthetic
                     }
                   }
                 }
@@ -187,21 +161,16 @@ export default function RotatingGlobe() {
                     "settings": {
                       "tooltipText": "{name}",
                       "interactive": true,
-                      "strokeWidth": 0.5
+                      "strokeWidth": 0.5,
+                      "stroke": "#00ffaa",
+                      "fill": "#004422"
                     },
                     "states": [
                       {
                         "key": "hover",
                         "settings": {
-                          "fill": "@root.interfaceColors.get('primaryButtonHover')",
-                          "fillOpacity": 1
-                        }
-                      },
-                      {
-                        "key": "active",
-                        "settings": {
-                          "fill": "@root.interfaceColors.get('primaryButtonActive')",
-                          "fillOpacity": 1
+                          "fill": "#00ffaa",
+                          "fillOpacity": 0.8
                         }
                       }
                     ]
@@ -217,18 +186,28 @@ export default function RotatingGlobe() {
     am5plugins_json.JsonParser.new(root)
       .parse(config, { parent: root.container })
       .catch(function (e) {
-        console.error("amCharts: the chart config failed to parse — nothing was rendered.", e);
+        console.error("amCharts globe widget failed to parse:", e);
       });
 
-    // Cleanup root element on component unmount
     return () => {
       root.dispose();
     };
   }, []);
 
   return (
-    <div style={{ width: '100%', height: '100vh', background: '#ffffff' }}>
-      <div id="chartdiv" style={{ width: '100%', height: '100%' }}></div>
+    <div
+      style={{
+        position: 'absolute',
+        top: '20px',
+        right: '20px',
+        width: '240px',
+        height: '240px',
+        pointerEvents: 'auto',
+        overflow: 'hidden',
+        zIndex: 10
+      }}
+    >
+      <div id="globe-widget-div" style={{ width: '100%', height: '100%' }}></div>
     </div>
   );
 }
