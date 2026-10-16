@@ -200,8 +200,8 @@ export default function CompactRotatingGlobe() {
         position: 'absolute',
         top: '20px',
         right: '20px',
-        width: '240px',
-        height: '240px',
+        width: '280px',
+        height: '280px',
         pointerEvents: 'auto',
         overflow: 'hidden',
         zIndex: 10
