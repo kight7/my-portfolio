@@ -1,9 +1,12 @@
 export default function NavBar() {
   const items = ['Profile', 'Skills', 'Projects', 'Contact']
   return (
-    <div style={{ border: '1px solid rgba(37,99,235,0.5)', boxShadow: '0 0 20px rgba(37,99,235,0.2)', background: 'rgba(5,5,15,0.8)' }} className="px-6 py-2 rounded-lg">
+    <nav
+      style={{ border: '1px solid rgba(37,99,235,0.5)', boxShadow: '0 0 20px rgba(37,99,235,0.2)', background: 'rgba(5,5,15,0.9)' }}
+      className="fixed top-4 left-1/2 -translate-x-1/2 z-50 px-6 py-2 rounded-lg backdrop-blur-md"
+    >
       <div className="flex items-center gap-8">
-        {items.map(function(item) {
+        {items.map(function (item) {
           return (
             <a
               key={item}
@@ -15,6 +18,6 @@ export default function NavBar() {
           )
         })}
       </div>
-    </div>
+    </nav>
   )
 }
